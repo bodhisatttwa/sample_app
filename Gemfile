@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'bootstrap-sass', '2.1'
+
 gem 'bcrypt-ruby', '3.0.1'
 
 # Bundle edge Rails instead:
@@ -11,10 +12,21 @@ group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
   gem 'spork', '0.9.2'
+  gem 'cucumber-rails', '1.2.1', :require => false
+  gem 'database_cleaner', '0.7.0'
 end
 
 group :development do
   gem 'annotate', '2.5.0'
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails', '4.1.0'
+end
+
+group :production do
+  gem 'pg', '0.12.2'
 end
 
 # Gems used only for assets and not required
@@ -31,16 +43,6 @@ end
 
 gem 'jquery-rails', '2.0.2'
 
-
-group :test do
-  gem 'capybara', '1.1.2'
-  gem 'factory_girl_rails', '4.1.0'
-end
-
-group :production do
-  gem 'pg', '0.12.2'
-end
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -55,3 +57,7 @@ end
 
 # To use debugger
 # gem 'debugger'
+#gem 'linecache19', '0.5.13', :path => 'linecache19-0.5.13.gem'
+
+gem 'ruby-debug-base19x', '>= 0.11.30.pre10'
+gem 'ruby-debug-ide', '>= 0.4.17.beta14'
