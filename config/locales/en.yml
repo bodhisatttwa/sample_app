@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+  # Removed password digest message validation - weak workaround
+#  activerecord:
+#    attributes:
+#      user:
+#        password_digest: "Password"
