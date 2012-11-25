@@ -11,11 +11,7 @@
 <%= render 'layouts/header' %>
 <div class="container">
   <% flash.each do |key, value| %>
-<<<<<<< HEAD
-      <% content_tag(:div, value, class: "alert alert-#{key}") %>
-=======
       <%= content_tag(:div, value, class: "alert alert-#{key}") %>
->>>>>>> sign-in-out
   <% end %>
   <%= yield %>
   <%= render 'layouts/footer' %>

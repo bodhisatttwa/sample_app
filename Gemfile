@@ -14,6 +14,12 @@ group :development, :test do
   gem 'spork', '0.9.2'
   gem 'cucumber-rails', '1.2.1', :require => false
   gem 'database_cleaner', '0.7.0'
+  # To use debugger
+  # gem 'debugger'
+  #gem 'linecache19', '0.5.13', :path => 'linecache19-0.5.13.gem'
+
+  gem 'ruby-debug-base19x', '>= 0.11.30.pre10'
+  gem 'ruby-debug-ide', '>= 0.4.17.beta14'
 end
 
 group :development do
@@ -55,9 +61,3 @@ gem 'jquery-rails', '2.0.2'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
-#gem 'linecache19', '0.5.13', :path => 'linecache19-0.5.13.gem'
-
-gem 'ruby-debug-base19x', '>= 0.11.30.pre10'
-gem 'ruby-debug-ide', '>= 0.4.17.beta14'

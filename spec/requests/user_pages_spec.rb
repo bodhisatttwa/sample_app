@@ -31,10 +31,7 @@ describe "User Pages" do
 
       describe "after submission" do
         before { click_button submit }
-<<<<<<< HEAD
-=======
 
->>>>>>> sign-in-out
         it { should have_selector('title', text: 'Sign up') }
         it { should have_content('error') }
       end
@@ -53,16 +50,10 @@ describe "User Pages" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
 
-<<<<<<< HEAD
-      describe "after saving the user" do
-        before { click_button submit }
-        let(:user) { User.find_by_email(exEmail) }
-=======
 
       describe "after saving the user" do
         before { click_button submit }
-        let(:user) { User.find_by_email('user@example.com') }
->>>>>>> sign-in-out
+        let(:user) { User.find_by_email(exEmail) }
 
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
