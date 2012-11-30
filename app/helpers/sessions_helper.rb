@@ -4,7 +4,12 @@ module SessionsHelper
     #cookies[:remember_token] = { value:   user.remember_token,
     #                             expires: 20.years.from_now.utc }
     cookies.permanent[:remember_token] = user.remember_token #shorthand for the upper statement
+
+    # Invoke a method
     self.current_user = user
+
+    # Sets a instance variable
+    #@current_user = user
   end
 
   def sign_out
@@ -23,4 +28,18 @@ module SessionsHelper
   def current_user
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   end
+
+  def current_user?(user)
+    user == current_user
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
+  end
+
+  def store_location
+    session[:return_to] = request.url
+  end
+
 end
