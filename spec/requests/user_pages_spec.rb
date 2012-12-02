@@ -5,8 +5,7 @@ describe "User Pages" do
   subject { page }
 
   describe "index" do
-    let(:user){FactoryGirl.create(:user)}
-
+    let(:user) { FactoryGirl.create(:user) }
 
     before do
       # sign_in FactoryGirl.create(:user)
@@ -44,10 +43,18 @@ describe "User Pages" do
         end
 
         it { should have_link('delete', href: user_path(User.first)) }
+
         it "should be able to delete another user" do
           expect { click_link('delete') }.to change(User, :count).by(-1)
         end
+
         it { should_not have_link('delete', href: user_path(admin)) }
+
+        it "should not be able to delete himself" do
+          expect do
+            delete user_path(admin)
+          end.to change(User, :count).by(0)
+        end
       end
     end
 
@@ -104,7 +111,6 @@ describe "User Pages" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
 
-
       describe "after saving the user" do
         before { click_button submit }
         let(:user) { User.find_by_email(exEmail) }
@@ -154,5 +160,4 @@ describe "User Pages" do
       specify { user.reload.email.should == new_email }
     end
   end
-
 end

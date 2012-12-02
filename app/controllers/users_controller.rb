@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :not_signed_in_user, only: [:create, :new]
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_filter :correct_user, only: [:edit, :update]
+  before_filter :incorrect_user, only: [:destroy]
   before_filter :admin_user, only: :destroy
 
   # HTTP: GET
@@ -64,7 +66,8 @@ class UsersController < ApplicationController
   # URI: /users/{id}
   # Action: delete
   def destroy
-    User.find(params[:id]).destroy
+    #User.find(params[:id]).destroy
+    @user.destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
   end
@@ -80,9 +83,24 @@ class UsersController < ApplicationController
     #redirect_to signin_url, notice: "Please sign in." unless signed_in?
   end
 
+  def not_signed_in_user
+    if signed_in?
+      redirect_to root_url
+    end
+  end
+
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
+  end
+
+  def incorrect_user
+    @user = User.find(params[:id])
+
+    if current_user == @user
+      flash[:notice] = "Can't remove yourself"
+      redirect_to users_url
+    end
   end
 
   def admin_user

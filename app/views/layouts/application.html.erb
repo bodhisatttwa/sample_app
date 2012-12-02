@@ -16,6 +16,28 @@
   <%= yield %>
   <%= render 'layouts/footer' %>
   <%= debug(params) if Rails.env.development? %>
+  <% if Rails.env.development? && nil %>
+      <%= debug(request.GET) %>
+      <%= debug(request.body) %>
+      <%= debug(request.content_length) %>
+      <%= debug(request.flash) %>
+      <%= debug(request.fullpath) %>
+      <%= debug(request.headers) %>
+      <%= debug(request.ip) %>
+      <%= debug(request.media_type) %>
+      <%= debug(request.method) %>
+      <%= debug(request.method_symbol) %>
+      <%= debug(request.original_fullpath) %>
+      <%= debug(request.original_url) %>
+      <%= debug(request.query_parameters) %>
+      <%= debug(request.raw_post) %>
+      <%= debug(request.remote_ip) %>
+      <%= debug(request.request_method) %>
+      <%= debug(request.request_method_symbol) %>
+      <%= debug(request.request_parameters) %>
+      <%= debug(request.server_software) %>
+      <%= debug(request.uuid) %>
+  <% end %>
 </div>
 </body>
 </html>

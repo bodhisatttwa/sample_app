@@ -32,16 +32,13 @@ describe User do
   it { should be_valid }
   it { should_not be_admin }
 
-  #describe "with admin attribute mass assignment" do
-  #  before do
-  #    @user.update_attributes(
-  #        {admin: true,
-  #        email: "cos@ab.pl",
-  #        })
-  #  end
-  #
-  #  it { should_not be_admin }
-  #end
+  describe "accessible attributes" do
+    it "should not allow access to admin" do
+      expect do
+        User.new(admin: true)
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
 
   describe "with admin attribute set to 'true'" do
     before do
@@ -150,5 +147,4 @@ describe User do
 
     its(:remember_token) { should_not be_blank }
   end
-
 end

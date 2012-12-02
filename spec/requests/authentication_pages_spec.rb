@@ -15,10 +15,13 @@ describe "Authentication" do
     before { visit signin_path }
 
     describe "with invalid information" do
-      before {  click_button "Sign in" }
+      before { click_button "Sign in" }
 
       it { should have_selector('title', text: 'Sign in') }
       it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+      it { should_not have_link('Profile') }
+      it { should_not have_link('Settings') }
+
 
       describe "after visiting another page" do
         before { click_link "Home" }
@@ -101,6 +104,21 @@ describe "Authentication" do
           it "should render the desired protected page" do
             page.should have_selector('title', text: 'Edit user')
           end
+
+          describe "when signing in again" do
+            before do
+              delete signout_path
+              visit signin_path
+              fill_in "Email", with: user.email
+              fill_in "Password", with: user.password
+              click_button "Sign in"
+            end
+
+            it "should render the default(profile) page" do
+              page.should have_selector('title', text: user.name)
+            end
+          end
+
         end
       end
     end
@@ -114,8 +132,6 @@ describe "Authentication" do
         before { visit edit_user_path(wrong_user) }
         it { should_not have_selector('title', text: full_title('Edit user')) }
       end
-
     end
   end
-
 end
