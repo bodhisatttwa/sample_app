@@ -1,0 +1,6 @@
+<% if current_user?(micropost.user) %>
+    <% store_location %>
+    <%= link_to "delete", micropost, method: :delete,
+                data: {confirm: "You sure?"},
+                title: micropost.content %>
+<% end %>

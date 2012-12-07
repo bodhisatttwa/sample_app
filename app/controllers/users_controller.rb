@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   # Action: create
   def show
     @user = User.find params[:id]
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # HTTP: POST
@@ -73,15 +74,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def signed_in_user
-    unless signed_in?
-      store_location
-      flash[:notice] = "Please sign in."
-      redirect_to signin_url
-    end
-    # equivalent shortcut
-    #redirect_to signin_url, notice: "Please sign in." unless signed_in?
-  end
+
 
   def not_signed_in_user
     if signed_in?
