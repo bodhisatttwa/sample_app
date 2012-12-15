@@ -5,7 +5,12 @@ SampleApp::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   match '/signup', to: 'users#new'
 
   match '/help', to: 'static_pages#help'
@@ -13,6 +18,8 @@ SampleApp::Application.routes.draw do
   match 'contact', to: 'static_pages#contact'
 
   resources :microposts, only: [:create, :destroy]
+
+  resources :relationships, only: [:create, :destroy]
 
   #get "users/new"
 
