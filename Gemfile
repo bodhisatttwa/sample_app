@@ -63,3 +63,4 @@ gem 'jquery-rails', '2.0.2'
 # Deploy with Capistrano
 # gem 'capistrano'
 
+gem 'mail','2.4.4'
