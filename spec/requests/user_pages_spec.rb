@@ -210,6 +210,7 @@ describe "User Pages" do
         fill_in "Email", with: new_email
         fill_in "Password", with: user.password
         fill_in "Password confirmation", with: user.password
+        check "New follower notification ?"
         click_button "Save changes"
       end
 
@@ -249,6 +250,4 @@ describe "User Pages" do
       it { should have_link(user.name, href: user_path(user)) }
     end
   end
-
-
 end

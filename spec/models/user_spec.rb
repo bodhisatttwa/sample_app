@@ -36,6 +36,7 @@ describe User do
   it { should respond_to(:follow!) }
   it { should respond_to(:admin) }
   it { should respond_to(:remember_token) }
+  it { should respond_to(:follower_mail_notification) }
 
   it { should be_valid }
   it { should_not be_admin }

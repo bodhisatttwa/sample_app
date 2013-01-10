@@ -5,6 +5,9 @@
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
         <%= render 'fields', f: f %>
+        <%= f.label :follower_mail_notification, 'New follower notification ?' %>
+        <%= f.check_box :follower_mail_notification %>
+        <br/><br/>
         <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
     <%= gravatar_for @user %>
